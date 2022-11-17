@@ -29,5 +29,12 @@ public class Userdb {
 		 em.close();
 		 }
 	}
-	
+	public static String getGravatarURL(String email,
+			Integer size){
+			 StringBuilder url = new StringBuilder();
+			 url.append("http://www.gravatar.com/avatar/");
+			 url.append(MD5Util.md5Hex(email));
+			 url.append("?s=" + size.toString());
+			 return url.toString();
+			 }
 }

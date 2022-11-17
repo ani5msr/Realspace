@@ -65,4 +65,44 @@ public class Userdb {
 			 em.close();
 			 }
 	}
+	public static Ysuser getUserByEmail(String email)
+	 {
+	 EntityManager em = Dbutil.getEntityManager("Realspace");
+	 String qString = "Select u from Ysuser u "+ "where u.useremail=:useremail";
+	 TypedQuery<Ysuser> q = em.createQuery(qString,Ysuser.class);
+	 q.setParameter("useremail", email);
+	 Ysuser user = null;
+	 try {
+		 System.out.println("Getting single user");
+		 user = q.getSingleResult();
+		 System.out.println(user.getUsername());
+		 }catch (NoResultException e){
+		 System.out.println(e);
+		 }finally{
+		 em.close();
+		 }
+		 return user;
+	 }
+	public static boolean isValidUser(String userEmail,
+			String userPassword)
+			 {EntityManager em = Dbutil.getEntityManager("Realspace");
+			  String qString = "Select count(b.ysuserid) from Ysuser b " + "where b.useremail = :useremail and b.userpassword = :userpass";
+			  TypedQuery<Long> q = em.createQuery(qString,Long.class);
+			  boolean result = false;
+			  q.setParameter("useremail", userEmail);
+			  q.setParameter("userpass", userPassword);
+			  try{
+			  long userId = q.getSingleResult();
+			  if (userId > 0)
+			  {
+			  result = true;
+			  }
+			  }catch (Exception e){
+			  result = false;
+			  }
+			  finally{
+			  em.close();
+			  }
+			  return result;
+			  }
 }

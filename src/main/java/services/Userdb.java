@@ -37,4 +37,32 @@ public class Userdb {
 			 url.append("?s=" + size.toString());
 			 return url.toString();
 			 }
+	public static void update(Ysuser ysUser) {
+		 EntityManager em = Dbutil.getEntityManager("Realspace");
+		 EntityTransaction trans = em.getTransaction();
+		 try {
+		 trans.begin();
+		 em.merge(ysUser);
+		 trans.commit();
+		 } catch (Exception e) {
+		 System.out.println(e);
+		 trans.rollback();
+		 } finally {
+		 em.close();
+		 }
+	}
+	public static void delete(Ysuser ysUser) {
+		 EntityManager em = Dbutil.getEntityManager("Realspace");
+		 EntityTransaction trans = em.getTransaction();
+		 try {
+		 trans.begin();
+		 em.remove(em.merge(ysUser));
+		 trans.commit();
+		 } catch (Exception e) {
+			 System.out.println(e);
+			 trans.rollback();
+			 } finally {
+			 em.close();
+			 }
+	}
 }

@@ -1,14 +1,16 @@
 package controller;
 
-import javax.servlet.http.HttpServlet;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Calendar;
-import java.util.Date;
+
 import model.Yspost;
 import model.Ysuser;
 import services.Postdb;
@@ -18,6 +20,7 @@ public class Post extends HttpServlet {
 	public Post() {
 	 super();
 	}
+	@Override
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 			 String posttext = request.getParameter("posttext");
 			 String nextURL = "/error.jsp";
@@ -37,5 +40,5 @@ public class Post extends HttpServlet {
 			 }
 			 getServletContext().getRequestDispatcher(nextURL).forward(request, response);
 	}
-	
+
 }

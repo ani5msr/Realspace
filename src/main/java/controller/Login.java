@@ -1,19 +1,21 @@
 package controller;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 
-import javax.servlet.*;
-import services.Userdb;
 import model.Ysuser;
+import services.Userdb;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public Login() {
 	 super();
 	}
+	@Override
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException,
 			IOException {
 			 //this page does not require user to be
@@ -44,5 +46,5 @@ public class Login extends HttpServlet {
 			 }
 			 //redirect to next page as indicated by the
 			 getServletContext().getRequestDispatcher(nextURL).forward(request,response);
-			  }			
+			  }
 }

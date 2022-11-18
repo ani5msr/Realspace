@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
-import services.Dbutil;
+
 import model.Ysuser;
 public class Userdb {
 	public static Ysuser getUser(long userID)

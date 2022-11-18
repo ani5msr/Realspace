@@ -1,13 +1,13 @@
 package controller;
-import javax.servlet.http.HttpServlet;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
+
 import model.Ysuser;
 import services.Userdb;
 public class Profile extends HttpServlet {
@@ -15,11 +15,13 @@ public class Profile extends HttpServlet {
 	public Profile() {
 	 super();
 	 }
+	@Override
 	protected void doGet(HttpServletRequest request,
 			 HttpServletResponse response) throws ServletException,
 			 IOException {
 			  doPost(request,response);
 			  }
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
 				  HttpSession session = request.getSession();
 				  String nextURL = "/error.jsp";
@@ -77,5 +79,5 @@ public class Profile extends HttpServlet {
 					  }
 				  getServletContext().getRequestDispatcher(nextURL).forward(request,response);
 	}
-	
+
 }

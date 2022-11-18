@@ -1,8 +1,10 @@
 package services;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
+
 import model.Yspost;
 public class Postdb {
 	public static void insert(Yspost ysPost) {

@@ -6,8 +6,7 @@ import javax.persistence.TypedQuery;
 import model.Yspost;
 public class Postdb {
 	public static void insert(Yspost ysPost) {
-		 EntityManager em = Dbutil.getEntityManager
-		("Realspace");
+		 EntityManager em = Dbutil.getEntityManager("Realspace");
 		 EntityTransaction trans = em.getTransaction();
 		 try {
 		 trans.begin();
@@ -21,8 +20,7 @@ public class Postdb {
 		 }
 		 }
 	public static void update(Yspost ysPost) {
-		 EntityManager em = Dbutil.getEntityManager
-		("Realspace");
+		 EntityManager em = Dbutil.getEntityManager("Realspace");
 		 EntityTransaction trans = em.getTransaction();
 		 try {
 			 trans.begin();
@@ -35,8 +33,7 @@ public class Postdb {
 			 }
 	}
 	public static void delete(Yspost ysPost) {
-		 EntityManager em = Dbutil.getEntityManager
-		("Realspace");
+		 EntityManager em = Dbutil.getEntityManager("Realspace");
 		 EntityTransaction trans = em.getTransaction();
 		 try {
 		 trans.begin();
@@ -50,8 +47,7 @@ public class Postdb {
 		 }
 		 }
 	public static List<Yspost> ysPost (){
-		 EntityManager em = Dbutil.getEntityManager
-		("Realspace");
+		 EntityManager em = Dbutil.getEntityManager("Realspace");
 		 String qString = "select b from Yspost b";
 		 List<Yspost> posts = null;
 		 try{TypedQuery<Yspost> query = em.createQuery(qString,Yspost.class);
@@ -98,5 +94,19 @@ public class Postdb {
 	 }
 	 return userposts;
 	 }
-	
+	public static List<Yspost> searchPosts (String search)
+	 {
+	 EntityManager em = Dbutil.getEntityManager("Realspace");
+	 List<Yspost> searchposts = null;
+	 String qString = "select b from Bhpost b "+ "where b.posttext like:search";
+	 try{
+		 TypedQuery<Yspost> query = em.createQuery(qString,Yspost.class);
+		 query.setParameter("search", "%" + search + "%");
+		 searchposts = query.getResultList();
+		 }catch (Exception e){
+		 e.printStackTrace();
+		 }finally{
+		 em.close();
+		 }return searchposts;
+		 }
 }

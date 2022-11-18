@@ -37,4 +37,5 @@ public class Post extends HttpServlet {
 			 }
 			 getServletContext().getRequestDispatcher(nextURL).forward(request, response);
 	}
+	
 }
